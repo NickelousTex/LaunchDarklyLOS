@@ -1,0 +1,16 @@
+{
+    "name": "launchdarkly-los-test",
+    "version": "1.0.0",
+    "description": "A test best for validating feature flaging on a mock LOS dashboard using LaunchDarkly SDK",
+    "main": "index.js",
+    "repository": "https://github.com/NickelousTex/LaunchDarklyLOS.git",
+    "keywords": [
+      "LaunchDarkly",
+      "LOS",
+      "Lending",
+      "Lender"
+    ],
+    "author": "Nick Teixeira <nickelousteixeira@gmail.com>",
+    "license": "ISC",
+    "homepage": "https://github.com/NickelousTex/LaunchDarklyLOS#readme"
+  }

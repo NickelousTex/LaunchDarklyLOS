@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'development', // Set mode to 'development'
     entry: './client/App.js',
     output: {
         filename: 'bundle.js',

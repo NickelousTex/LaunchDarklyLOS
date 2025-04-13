@@ -13,7 +13,18 @@ cd LaunchDarklyLOS
 npm i
 ```
 
-**3. Compile the packages and start the server**
+**3. Setup environment variables**
+
+Create an environment variable file for storing key information to edit for testing. You can edit this file later.
+```sh
+touch .env
+export USER_KEY=test_user
+export USER_NAME="Jon Doe"
+export USER_EMAIL="jon.doe@gmail.com"
+export LAUNCHDARKLY_SDK_KEY="sdk-******" # your SDK key
+```
+
+**4. Compile the packages and start the server**
 
 ```sh
 npm start

@@ -59,6 +59,18 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Start the server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
+app.get('/api/feature-flags', async (req, res) => {
+    try {
+        const user = { key: userKey, name: userName, email: userEmail };
+        const showLogLeadButton = await ldClient.variation('show_log_lead_button', user, false);
+        res.json({ showLogLeadButton });
+    } catch (err) {
+        console.error('Error fetching feature flags:', err);
+        res.status(500).send('Error fetching feature flags');
+    }
+});
+
+
 // Ensure LaunchDarkly client is closed on shutdown
 process.on('SIGINT', () => {
     ldClient.close();

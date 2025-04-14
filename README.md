@@ -58,5 +58,4 @@ curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_b
         { "kind": "turnFlagOn" }
       ]
     }'
-
 ```

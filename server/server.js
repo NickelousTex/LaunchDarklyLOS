@@ -1,11 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const app = express();
-const PORT = 3000;
-app.use(express.static(path.join(__dirname, '../public')));
-
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackConfig = require('../webpack.config');
 const LaunchDarkly = require('@launchdarkly/node-server-sdk');
+
+const app = express();
+const PORT =  process.env.PORT || 3000;
 
 // Access environment variables
 const sdkKey = process.env.LAUNCHDARKLY_SDK_KEY;
@@ -32,7 +35,7 @@ ldClient.waitForInitialization().then(() => {
         email: userEmail,
     };
 
-    //Evaluate a feature flag
+    // Evaluate a feature flag
     ldClient.variation('startup_log', user, true).then((flagValue) => {
         console.log(`Feature flag value for ${userName}: ${flagValue}`);
     });
@@ -40,9 +43,23 @@ ldClient.waitForInitialization().then(() => {
     console.error('LaunchDarkly initialization failed:', err);
 });
 
-app.listen(PORT, () => console.log(`connected to port ${PORT}`));
+// Webpack setup for HMR
+const compiler = webpack(webpackConfig);
 
-// Ensure client is closed on shutdown
+app.use(
+    webpackDevMiddleware(compiler, {
+        publicPath: webpackConfig.output.publicPath, // Serve files from memory
+    })
+);
+
+app.use(webpackHotMiddleware(compiler)); // Enable Hot Module Replacement
+
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Start the server
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+// Ensure LaunchDarkly client is closed on shutdown
 process.on('SIGINT', () => {
     ldClient.close();
     process.exit();

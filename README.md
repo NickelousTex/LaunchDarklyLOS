@@ -1,5 +1,6 @@
 # LaunchDarklyLOS
 
+## Setup
 **1. Clone down this repository**
 
 ```sh
@@ -33,11 +34,15 @@ npm start
 
 **4. Go to [http://localhost:3000](http://localhost:3000) on a web browser**
 
-Its currently aligned to port 3000 but you can change the port for the server in `.env`
+Currently aligned to port 3000 but you can change the port for the server in `.env`
+
+
+-----
+
 
 ## Part 1
-**5. Test server side listening feature showing log call option**
-After logging into LaunchDarkly go to the feature flag for showing the log lead function: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
+**5. Test server side listening feature showing log lead option**
+After logging into LaunchDarkly go to the feature flag for showing the Log Lead function: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
 
 Toggle function on/off manually to validate to see the impact on the UI
 When set to false:
@@ -46,7 +51,7 @@ When set to false:
 When set to true:
 # placeholder for image w/ On
 
-This command can also be done via the API using curl:
+We also can just turn the entire flag off via API using curl for easy rollback:
 ```sh
 curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_button' \
   -H 'LD-API-Version: 20240415' \
@@ -55,7 +60,7 @@ curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_b
   -d '{
       "environmentKey": "test",
       "instructions": [
-        { "kind": "turnFlagOn" }
+        { "kind": "turnFlagOff" }
       ]
     }'
 ```
@@ -68,7 +73,7 @@ The flag's functionality is designed to be based on context of the admin 'key'
 
 # placeholder image
 
-Update the kind of user in App.js to be a 'admin' - this will pass the targeted rules and the card will appear.
+Update the key in App.js to be a 'admin_user' - this will pass the targeted rules and the card will appear.
 ```
 context: {
     kind: 'admin',
@@ -77,12 +82,11 @@ context: {
     email: 'JonDoe@gmail.com',
 },
 ```
-
 Note that changing the key to `test_user` will result in the card disappearing
 
 
 Alternatively:
-Update the user key to Jane Doe to show a targeted user flag
+Update the kind to `user` and user_key to `Jane Doe` to pass a targeted user flag to show the card as well.
 ```
 context: {
     kind: 'user',

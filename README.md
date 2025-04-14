@@ -68,5 +68,15 @@ The flag's functionality is designed to be based on context of the admin 'key'
 
 # placeholder image
 
-Update the key to be a 'test' user - this will follow the current targeted rules to false and the card will be removed.
+Update the key in App.js to be a 'admin_user' - this will pass the targeted rules and the card will appear.
 
+Altneratively:
+Update the user from Jon to Jane Doe to pass an individual targeting rule
+```
+context: {
+    kind: 'user',
+    key: 'test_user',
+    name: 'Jane Doe',
+    email: 'JaneDoe@gmail.com',
+},
+```

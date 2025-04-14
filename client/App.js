@@ -8,8 +8,8 @@ const init = async () => {
   const LDProvider = await asyncWithLDProvider({
     clientSideID: process.env.REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID,
     context: {
-      kind: 'admin',
-      key: 'admin-user',
+      kind: 'user',
+      key: 'test_user',
       name: 'Jon Doe',
       email: 'JonDoe@gmail.com',
     },

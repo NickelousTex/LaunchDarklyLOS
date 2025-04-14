@@ -36,7 +36,7 @@ npm start
 Its currently aligned to port 3000 but you can change the port for the server in `.env`
 
 ## Part 1
-**5. Test new feature showing log call option**
+**5. Test server side listening feature showing log call option**
 After logging into LaunchDarkly go to the feature flag for showing the log lead function: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
 
 Toggle function on/off manually to validate to see the impact on the UI

@@ -61,3 +61,12 @@ curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_b
 ```
 
 ### Part 2
+**6. Test client side listening feature showing Application lookup option**
+After logging into LaunchDarkly go to the feature flag for showing the Application Lookup Card: https://app.launchdarkly.com/projects/default/flags/show_application_lookup
+
+The flag's functionality is designed to be based on context of the admin 'key' 
+
+# placeholder image
+
+Update the key to be a 'test' user - this will follow the current targeted rules to false and the card will be removed.
+

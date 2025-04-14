@@ -10,8 +10,8 @@ const init = async () => {
     context: {
       kind: 'admin',
       key: 'nt-admin-user',
-      name: 'Nick Teixeira',
-      email: 'nickelousteixeira@gmail.com',
+      name: 'Jon Doe',
+      email: 'JonDoe@gmail.com',
     },
     options: {
       streaming: true,

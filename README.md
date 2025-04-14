@@ -31,7 +31,7 @@ export LAUNCHDARKLY_SDK_KEY="sdk-******" # your SDK key
 npm start
 ```
 
-**4. Go to [localhost:3000](http://localhost:3000) on a web browser**
+**4. Go to [http://localhost:3000](http://localhost:3000) on a web browser**
 
 Its currently aligned to port 3000 but you can change the port for the server in `.env`
 

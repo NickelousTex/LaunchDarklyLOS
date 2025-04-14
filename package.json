@@ -1,7 +1,7 @@
 {
     "name": "launchdarkly-los-test",
     "version": "1.0.0",
-    "description": "A test best for validating feature flaging on a mock LOS dashboard using LaunchDarkly SDK",
+    "description": "A test bed for validating feature flaging on a mock LOS dashboard using LaunchDarkly SDK",
     "main": "index.js",
     "repository": "https://github.com/NickelousTex/LaunchDarklyLOS.git",
     "keywords": [

@@ -122,10 +122,12 @@ context: {
 },
 ```
 
-### Extra Credit
+### **Extra Credit
 **Experimentation**
+
 Track user interactions with feature flags by leveraging metrics in LaunchDarkly. For example, monitor clicks on the Log Call Button using this metric:
 [log-call-click](https://app.launchdarkly.com/projects/default/metrics/log_call_count/)
 
 **Integration Test**
+
 Used [Zapier](https://zapier.com/editor/291968418/published) to make a trigger to draft an email every time a flag is updated

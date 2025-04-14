@@ -13,6 +13,9 @@ const init = async () => {
       name: 'Nick Teixeira',
       email: 'nickelousteixeira@gmail.com',
     },
+    options: {
+      streaming: true,
+    },
   });
 
   const render = () => {

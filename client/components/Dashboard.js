@@ -72,7 +72,8 @@ function DashboardContent() {
   const [open, setOpen] = React.useState(false);
   
   // Access LaunchDarkly flag
-  const { show_application_lookup } = useFlags();
+  const { showApplicationLookup } = useFlags();
+  console.log('Flag value:', showApplicationLookup);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -172,7 +173,7 @@ function DashboardContent() {
               </Grid>
 
               {/* Conditionally Render View Applications */}
-              {show_application_lookup && (
+              {showApplicationLookup && (
                 <Grid item xs={12} md={6} lg={4}>
                   <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}>
                     <ViewApplications />

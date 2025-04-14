@@ -9,7 +9,7 @@ const init = async () => {
     clientSideID: process.env.REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID,
     context: {
       kind: 'admin',
-      key: 'nt-admin-user',
+      key: 'admin-user',
       name: 'Jon Doe',
       email: 'JonDoe@gmail.com',
     },

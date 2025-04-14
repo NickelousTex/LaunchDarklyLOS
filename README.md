@@ -68,12 +68,12 @@ curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_b
 ```
 
 ### Part 2
-**6. Test client side listening feature showing Application lookup option**
+**6. Test client side listening feature showing Application Lookup option**
 After logging into LaunchDarkly go to the feature flag for showing the Application Lookup Card: https://app.launchdarkly.com/projects/default/flags/show_application_lookup
 
 The flag's functionality is designed to be based on context of the admin 'key' 
 
-(https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/ApplicationLookup_rule.png)
+![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
 
 Update the key in App.js to be a 'admin_user' - this will pass the targeted rules and the card will appear.
 ```

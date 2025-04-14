@@ -45,3 +45,18 @@ When set to false:
 
 When set to true:
 # placeholder for image w/ On
+
+This command can also be done via the API using curl:
+```sh
+curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_button' \
+  -H 'LD-API-Version: 20240415' \
+  -H 'Authorization: your_api_key' \
+  -H 'Content-Type: application/json; domain-model=launchdarkly.semanticpatch' \
+  -d '{
+      "environmentKey": "test",
+      "instructions": [
+        { "kind": "turnFlagOn" }
+      ]
+    }'
+
+```

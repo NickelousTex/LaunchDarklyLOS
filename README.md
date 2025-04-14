@@ -49,10 +49,10 @@ After logging into LaunchDarkly go to the feature flag for showing the Log Lead 
 Toggle function on/off manually to validate to see the impact on the UI
 
 When set to false:
-![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/LogLead_Absent.png "Log Lead missing")
+![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Absent.png "Log Lead missing")
 
 When set to true:
-![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/LogLead_Present.png "Log Lead present")
+![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Present.png "Log Lead present")
 
 
 It is also possible turn the entire flag off via API using curl for easy rollback:
@@ -75,7 +75,7 @@ After logging into LaunchDarkly go to the feature flag for showing the Applicati
 
 The flag's functionality is designed to be based on context of the admin 'key' 
 
-![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
+![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
 
 Update the key in App.js to be a 'admin_user' - this will pass the targeted rules and the card will appear.
 ```

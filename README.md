@@ -80,14 +80,16 @@ curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_b
 ```
 
 ### Part 2
-**Test client side listening feature showing Application Lookup option**
-After logging into LaunchDarkly go to the feature flag for showing the Application Lookup Card: https://app.launchdarkly.com/projects/default/flags/show_application_lookup
+**Client-Side Listening - Application Lookup Card**
+Log into LaunchDarkly and navigate to the Application Lookup Card feature flag: https://app.launchdarkly.com/projects/default/flags/show_application_lookup
 
 The flag's functionality is designed to be based on context of the admin 'key' 
 
 ![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
 
-Update the key in App.js to be a 'admin_user' - this will pass the targeted rules and the card will appear.
+Update the context object in App.js to match one of the targeted rules.
+
+Admin Context (Card Visable)
 ```
 context: {
     kind: 'admin',
@@ -96,10 +98,10 @@ context: {
     email: 'JonDoe@gmail.com',
 },
 ```
-Note that changing the key to `test_user` will result in the card disappearing
+Changing the key to a non-targeted value (e.g., test_user) will hide the card
 
 
-Alternatively:
+User Context (Card Visable)
 Update the kind to `user` and user_key to `Jane Doe` to pass a targeted user flag to show the card as well.
 ```
 context: {
@@ -112,5 +114,5 @@ context: {
 
 ### Extra Credit
 **Experimentation**
-Metric for clicks on the log call button
+Track user interactions with feature flags by leveraging metrics in LaunchDarkly. For example, monitor clicks on the Log Call Button using this metric:
 [log-call-click](https://app.launchdarkly.com/projects/default/metrics/log_call_count/)

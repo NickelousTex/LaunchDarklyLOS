@@ -47,13 +47,15 @@ The port for the server can be updated in `.env`
 After logging into LaunchDarkly go to the feature flag for showing the Log Lead function: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
 
 Toggle function on/off manually to validate to see the impact on the UI
+
 When set to false:
-# placeholder for image w/ Off
+![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/LogLead_Absent.png "Log Lead missing")
 
 When set to true:
-# placeholder for image w/ On
+![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/LogLead_Present.png "Log Lead present")
 
-We also can just turn the entire flag off via API using curl for easy rollback:
+
+It is also possible turn the entire flag off via API using curl for easy rollback:
 ```sh
 curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_button' \
   -H 'LD-API-Version: 20240415' \

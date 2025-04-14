@@ -43,7 +43,7 @@ export REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="*******" # your project client id 
 npm start
 ```
 
-**4. Go to [http://localhost:3000](http://localhost:3000) on a web browser**
+**5. Open a web browser**
 
 Access the application at http://localhost:3000 in your browser. The server port can be updated in the .env file.
 
@@ -53,7 +53,7 @@ Access the application at http://localhost:3000 in your browser. The server port
 ## Key Callouts
 - [enviornment variables](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/server/server.js#L11-L16) must have a set `.env` file 
 - [server-side sdk](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/server/server.js#L23-L44)
-- [server-side flag usage](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L34-L44)
+- [server-side flag usage 1](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L13-L26) & [server-side flag usage 2](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L51-L57)
 - [client-side sdk w/streaming](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/App.js#L7-L19)
 - [client-side flag usage 1](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/Dashboard.js#L74-L79) & [client-side flag usage 2](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/Dashboard.js#L175-L182)
 - [custom metric](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L34-L44)

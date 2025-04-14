@@ -19,7 +19,7 @@ Create an environment variable file for storing key information to edit for test
 ```sh
 touch .env
 export PORT=3000
-export USER_KEY=test_user
+export REACT_APP_USER_KEY=test_user
 export USER_NAME="Jon Doe"
 export USER_EMAIL="jon.doe@gmail.com"
 export LAUNCHDARKLY_SDK_KEY="sdk-******" # your SDK key
@@ -80,3 +80,7 @@ context: {
     email: 'JaneDoe@gmail.com',
 },
 ```
+
+### Extra Credit
+**7. Experimentation**
+log-call-click - clicks on the log call button

@@ -73,7 +73,7 @@ function DashboardContent() {
   
   // Access LaunchDarkly flag
   const { showApplicationLookup } = useFlags();
-  console.log('Flag value:', showApplicationLookup);
+  console.log('Client Side Flag value:', showApplicationLookup);
   const toggleDrawer = () => {
     setOpen(!open);
   };

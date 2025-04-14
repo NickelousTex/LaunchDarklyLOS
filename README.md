@@ -68,16 +68,27 @@ The flag's functionality is designed to be based on context of the admin 'key'
 
 # placeholder image
 
-Update the key in App.js to be a 'admin_user' - this will pass the targeted rules and the card will appear.
+Update the kind of user in App.js to be a 'admin' - this will pass the targeted rules and the card will appear.
+```
+context: {
+    kind: 'admin',
+    key: 'admin_user',
+    name: 'Jon Doe',
+    email: 'JonDoe@gmail.com',
+},
+```
 
-Altneratively:
-Update the user from Jon to Jane Doe to pass an individual targeting rule
+Note that changing the key to `test_user` will result in the card disappearing
+
+
+Alternatively:
+Update the user key to Jane Doe to show a targeted user flag
 ```
 context: {
     kind: 'user',
-    key: 'test_user',
-    name: 'Jane Doe',
-    email: 'JaneDoe@gmail.com',
+    key: 'Jane Doe',
+    name: 'Jon Doe',
+    email: 'JonDoe@gmail.com',
 },
 ```
 

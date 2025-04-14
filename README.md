@@ -1,5 +1,14 @@
 # LaunchDarklyLOS
 
+## About
+This project demonstrates the integration of LaunchDarkly feature flagging within a Loan Origination System (LOS), a critical software platform widely used in financial services for managing loans such as mortgages, auto loans, student loans, and small business loans. LOS platforms are often complex, incorporating legacy systems and requiring rigorous scrutiny for updates due to their foundational role in loan servicing.
+
+The project highlights how feature flagging can address common challenges by enabling user/rule targeting, rollback functionality, and metric gathering. It also showcases seamless integration with third-party SDKs, such as InformedIQ, overcoming traditional friction points that slow down adoption.
+
+
+-----
+
+
 ## Setup
 **1. Clone down this repository**
 
@@ -36,13 +45,14 @@ npm start
 
 **4. Go to [http://localhost:3000](http://localhost:3000) on a web browser**
 
-The port for the server can be updated in `.env`
+Access the application at http://localhost:3000 in your browser. The server port can be updated in the .env file.
 
 
 -----
 
+## Feature Demonstration
 
-## Part 1
+### Part 1
 **5. Test server side listening feature showing log lead option**
 After logging into LaunchDarkly go to the feature flag for showing the Log Lead function: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
 
@@ -102,4 +112,5 @@ context: {
 
 ### Extra Credit
 **7. Experimentation**
-log-call-click - clicks on the log call button
+Metric for clicks on the log call button
+[log-call-click](https://app.launchdarkly.com/projects/default/metrics/log_call_count/)

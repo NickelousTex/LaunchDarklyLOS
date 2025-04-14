@@ -53,8 +53,8 @@ Access the application at http://localhost:3000 in your browser. The server port
 ## Feature Demonstration
 
 ### Part 1
-**5. Test server side listening feature showing log lead option**
-After logging into LaunchDarkly go to the feature flag for showing the Log Lead function: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
+**5. Server-Side Listening - Log Lead Button**
+Log into LaunchDarkly and navigate to the Log Lead Button feature flag: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
 
 Toggle function on/off manually to validate to see the impact on the UI
 
@@ -65,7 +65,7 @@ When set to true:
 ![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Present.png "Log Lead present")
 
 
-It is also possible turn the entire flag off via API using curl for easy rollback:
+You can turn off the feature flag programmatically using the LaunchDarkly API - which can be used for quick rollbacks:
 ```sh
 curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_button' \
   -H 'LD-API-Version: 20240415' \

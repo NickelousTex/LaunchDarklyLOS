@@ -9,6 +9,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+// LaunchDarkly Hook
+import { useFlags } from 'launchdarkly-react-client-sdk';
+
 /* COMPONENTS */
 import { mainListItems, secondaryListItems } from './listItems';
 import TotalLoans from './TotalLoans';
@@ -67,7 +70,10 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(false);
-
+  
+  // Access LaunchDarkly flag
+  const { showApplicationLookup } = useFlags();
+  console.log('Client Side Flag value:', showApplicationLookup);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -165,19 +171,16 @@ function DashboardContent() {
                   <TotalLoans />
                 </Paper>
               </Grid>
-              {/* View Applications */}
-              <Grid item xs={12} md={6} lg={4}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <ViewApplications />
-                </Paper>
-              </Grid>
+
+              {/* Conditionally Render View Applications */}
+              {showApplicationLookup && (
+                <Grid item xs={12} md={6} lg={4}>
+                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}>
+                    <ViewApplications />
+                  </Paper>
+                </Grid>
+              )}
+
               {/* User Activities */}
               <Grid item xs={12} md={6} lg={4}>
                 <Paper

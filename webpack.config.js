@@ -1,11 +1,17 @@
 const path = require('path');
+const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    mode: 'development', // Set mode to 'development'
-    entry: './client/App.js',
+    mode: 'development',
+    entry: [
+        'webpack-hot-middleware/client?reload=true', // Enable HMR runtime with auto-reload
+        './client/App.js',
+    ],
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'public'),
+        publicPath: '/', // Required for HMR to work properly
     },
     module: {
         rules: [
@@ -14,16 +20,19 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(js|jsx|test\.js)$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
-                        plugins: ['@babel/plugin-proposal-class-properties']
-                    }
-                }
-            }
-        ]
-    }
-}
+                    },
+                },
+            },
+        ],
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(), // Enable HMR plugin
+        new Dotenv(), // Load environment variables from .env file
+    ],
+};

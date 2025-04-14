@@ -20,10 +20,12 @@ Create an environment variable file for storing key information to edit for test
 ```sh
 touch .env
 export PORT=3000
+export USER_KEY=test_user
 export REACT_APP_USER_KEY=test_user
 export USER_NAME="Jon Doe"
 export USER_EMAIL="jon.doe@gmail.com"
 export LAUNCHDARKLY_SDK_KEY="sdk-******" # your SDK key
+export REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="*******" # your project client id - note that only flags enabled to use client sdk will be able to be used
 ```
 
 **4. Compile the packages and start the server**
@@ -34,7 +36,7 @@ npm start
 
 **4. Go to [http://localhost:3000](http://localhost:3000) on a web browser**
 
-Currently aligned to port 3000 but you can change the port for the server in `.env`
+The port for the server can be updated in `.env`
 
 
 -----
@@ -71,7 +73,7 @@ After logging into LaunchDarkly go to the feature flag for showing the Applicati
 
 The flag's functionality is designed to be based on context of the admin 'key' 
 
-# placeholder image
+(https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/src/common/images/ApplicationLookup_rule.png)
 
 Update the key in App.js to be a 'admin_user' - this will pass the targeted rules and the card will appear.
 ```

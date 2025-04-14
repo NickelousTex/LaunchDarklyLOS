@@ -51,9 +51,9 @@ Access the application at http://localhost:3000 in your browser. The server port
 -----
 
 ## Key Callouts
-- [enviornment variables](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/server/server.js#L10-L16) must have a set `.env` file 
-- [server-side sdk](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/server/server.js#L19-L44)
-- [client-side sdk w/streaming](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/client/App.js#L7-L19)
+- [enviornment variables](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/server/server.js#L10-L16) must have a set `.env` file 
+- [server-side sdk](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/server/server.js#L19-L44)
+- [client-side sdk w/streaming](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/App.js#L7-L19)
 
 
 ## Feature Demonstration

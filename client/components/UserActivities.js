@@ -7,9 +7,11 @@ import InfoIcon from '@mui/icons-material/Info';
 
 /* COMPONENTS */
 import Title from './Title';
+import { useLDClient } from 'launchdarkly-react-client-sdk';
 
 export default function UserActivities() {
     const [showLogLeadButton, setShowLogLeadButton] = useState(false); // State for feature flag
+    const ldClient = useLDClient();
 
     useEffect(() => {
         // Function to fetch the feature flag value
@@ -29,6 +31,15 @@ export default function UserActivities() {
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }, []);
 
+    const handleLogCallClick = () => {
+        console.log('Log Call button clicked');
+        
+        // Track a custom event in LaunchDarkly
+        if (ldClient) {
+            ldClient.track('log-call-click', { key: 'user-key-123' }, 1);
+        }
+    };
+
     return (
         <React.Fragment>
             <Title>User Quick Links</Title>
@@ -42,7 +53,11 @@ export default function UserActivities() {
                     </Grid>
                 )}
                 <Grid item xs={6}>
-                    <Button sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} variant="contained">
+                    <Button 
+                        sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} 
+                        variant="contained"
+                        onClick={handleLogCallClick} // Add click handler for tracking
+                    >
                         <ContactPhoneIcon />Log Call
                     </Button>
                 </Grid>

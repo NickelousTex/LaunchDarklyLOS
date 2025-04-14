@@ -8,9 +8,8 @@ const webpackConfig = require('../webpack.config');
 const LaunchDarkly = require('@launchdarkly/node-server-sdk');
 
 const app = express();
-const PORT =  process.env.PORT || 3000;
-
 // Access environment variables
+const PORT =  process.env.PORT || 3000;
 const sdkKey = process.env.LAUNCHDARKLY_SDK_KEY;
 const userKey = process.env.USER_KEY;
 const userName = process.env.USER_NAME;

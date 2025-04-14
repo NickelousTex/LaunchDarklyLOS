@@ -34,7 +34,7 @@ export REACT_APP_USER_KEY=test_user
 export USER_NAME="Jon Doe"
 export USER_EMAIL="jon.doe@gmail.com"
 export LAUNCHDARKLY_SDK_KEY="sdk-******" # your SDK key
-export REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="*******" # your project client id - note that only flags enabled to use client sdk will be able to be used
+export REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="*******" # your project client id - note that only flags enabled to use client sdk can be used
 ```
 
 **4. Compile the packages and start the server**
@@ -49,6 +49,12 @@ Access the application at http://localhost:3000 in your browser. The server port
 
 
 -----
+
+## Key Callouts
+- [enviornment variables](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/server/server.js#L10-L16) must have a set `.env` file 
+- [server-side sdk](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/server/server.js#L19-L44)
+- [client-side sdk w/streaming](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/client/App.js#L7-L19)
+
 
 ## Feature Demonstration
 
@@ -87,7 +93,7 @@ The flag's functionality is designed to be based on context of the admin 'key'
 
 ![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
 
-Update the context object in App.js to match one of the targeted rules.
+Update the [context object](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/client/App.js#L10-L14) in App.js to match one of the targeted rules.
 
 Admin Context (Card Visable)
 ```
@@ -102,6 +108,7 @@ Changing the key to a non-targeted value (e.g., test_user) will hide the card
 
 
 User Context (Card Visable)
+
 Update the kind to `user` and user_key to `Jane Doe` to pass a targeted user flag to show the card as well.
 ```
 context: {

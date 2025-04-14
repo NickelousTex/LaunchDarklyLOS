@@ -32,11 +32,11 @@ export default function UserActivities() {
     }, []);
 
     const handleLogCallClick = () => {
-        console.log('Log Call button clicked');
+        console.log('Log Call button clicked by user: ', process.env.REACT_APP_USER_KEY);
         
         // Track a custom event in LaunchDarkly
         if (ldClient) {
-            ldClient.track('log-call-click', { key: process.env.REACT_APP_USER_KEY }, 1);
+            ldClient.track('log-call-click', { key: process.env.REACT_APP_USER_KEY }, 2);
         }
         ldClient.flush().then(() => {
             console.log('Events flushed');

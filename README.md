@@ -64,6 +64,7 @@ Access the application at http://localhost:3000 in your browser. The server port
 
 ### Part 1
 **Server-Side Listening - Log Lead Button**
+
 Log into LaunchDarkly and navigate to the Log Lead Button feature flag: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
 
 Toggle function on/off manually to validate to see the impact on the UI
@@ -91,6 +92,7 @@ curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_b
 
 ### Part 2
 **Client-Side Listening - Application Lookup Card**
+
 Log into LaunchDarkly and navigate to the Application Lookup Card feature flag: https://app.launchdarkly.com/projects/default/flags/show_application_lookup
 
 The flag's functionality is designed to be based on context of the admin 'key' 

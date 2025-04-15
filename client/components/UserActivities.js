@@ -31,18 +31,45 @@ export default function UserActivities() {
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }, []);
 
-    const handleLogCallClick = () => {
-        console.log('Log Call button clicked by user: ', process.env.REACT_APP_USER_KEY);
-        
-        // Track a custom event in LaunchDarkly
-        if (ldClient) {
-            ldClient.track('log-call-click', { key: process.env.REACT_APP_USER_KEY }, 2);
+    const handleLogCallClick = async () => {
+        try {
+            // Log the button click with user information
+            console.log('Log Call button clicked by user:', process.env.REACT_APP_USER_KEY);
+
+            // Ensure the LaunchDarkly client is initialized before tracking the event
+            if (ldClient) {
+                // Track a custom event in LaunchDarkly
+                ldClient.track('log-call-click', { key: process.env.REACT_APP_USER_KEY }, 1);
+
+                // Flush events to ensure they are sent to LaunchDarkly
+                await ldClient.flush();
+                console.log('Events successfully flushed to LaunchDarkly');
+            } else {
+                console.error('LaunchDarkly client is not initialized');
+            }
+        } catch (error) {
+            console.error('Error tracking event or flushing events:', error);
         }
-        ldClient.flush().then(() => {
-            console.log('Events flushed');
-        });
     };
 
+    const handleLogLeadClick = async () => {
+        try {
+            console.log('Log Lead button clicked by user:', process.env.REACT_APP_USER_KEY);
+
+            if (ldClient) {
+                // Track a custom event in LaunchDarkly
+                ldClient.track('log-lead-click', { key: process.env.REACT_APP_USER_KEY }, 1);
+
+                // Flush events to ensure they are sent to LaunchDarkly
+                await ldClient.flush();
+                console.log('Events successfully flushed to LaunchDarkly');
+            } else {
+                console.error('LaunchDarkly client is not initialized');
+            }
+        } catch (error) {
+            console.error('Error tracking event or flushing events:', error);
+        }
+    };
     return (
         <React.Fragment>
             <Title>User Quick Links</Title>
@@ -50,14 +77,18 @@ export default function UserActivities() {
                 {/* Conditionally render the first Grid item based on the feature flag */}
                 {showLogLeadButton && (
                     <Grid item xs={6}>
-                        <Button sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} variant="contained">
+                        <Button 
+                            sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} 
+                            variant="contained" 
+                            onClick={handleLogLeadClick} // Add click handler for tracking
+                        >
                             <LibraryBooksIcon />Log Lead
                         </Button>
                     </Grid>
                 )}
                 <Grid item xs={6}>
-                    <Button 
-                        sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} 
+                    <Button
+                        sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }}
                         variant="contained"
                         onClick={handleLogCallClick} // Add click handler for tracking
                     >

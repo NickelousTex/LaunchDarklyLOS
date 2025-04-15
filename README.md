@@ -34,7 +34,7 @@ REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="<your-client-side-id-*******>"
 EOF
 ```
 
-**4. Startup docker contain**
+**4. Startup docker container**
 
 Using docker compose create a container to run the app in detached mode
 ```sh
@@ -43,7 +43,7 @@ docker compose up -d
 
 **5. Open a web browser**
 
-Access the application at http://localhost:3000 in your browser. The server port can be updated in the .env file.
+Access the application at http://localhost:3000 in your browser.
 
 **6. Update environment variables**
 

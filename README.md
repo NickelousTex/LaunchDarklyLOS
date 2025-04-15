@@ -111,6 +111,7 @@ The flag's functionality is designed to be based on context of the admin 'key'
 
 Update the [context object](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/client/App.js#L10-L14) in App.js to match one of the targeted rules.
 
+
 Admin Context (Card Visable)
 ```
 context: {
@@ -139,7 +140,7 @@ context: {
 **Experimentation**
 
 Track user interactions with feature flags by leveraging metrics in LaunchDarkly. For example, monitor clicks on the Log Call Button using this metric:
-[log-call-click](https://app.launchdarkly.com/projects/default/metrics/log_call_count/)
+[log-call-click](https://app.launchdarkly.com/projects/default/metrics/log_call_count/details?env=test&selected-env=test)
 
 **Integration Test**
 

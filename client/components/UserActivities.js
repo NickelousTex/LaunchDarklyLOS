@@ -31,17 +31,45 @@ export default function UserActivities() {
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }, []);
 
-    const handleLogCallClick = () => {
-        console.log('Log Call button clicked by user: ', process.env.REACT_APP_USER_KEY);
-        
-        // Track a custom event in LaunchDarkly
-        if (ldClient) {
-            ldClient.track('log-call-click', { key: process.env.REACT_APP_USER_KEY }, 2);
+    const handleLogCallClick = async () => {
+        try {
+            // Log call button click with user information
+            console.log('Log Call button clicked by user:', process.env.REACT_APP_USER_KEY);
+            if (ldClient) {
+                ldClient.track('log-call-click', { key: process.env.REACT_APP_USER_KEY }, 1);
+                // Flush events immediately
+                await ldClient.flush();
+                console.log('Event successfully flushed to LaunchDarkly');
+            } else {
+                // console logging for debugging
+                console.error('LaunchDarkly client is not initialized');
+            }
+        } catch (error) {
+            console.error('Error tracking event or flushing events:', error);
         }
-        ldClient.flush().then(() => {
-            console.log('Events flushed');
-        });
     };
+    // Initialize a click counter to send total click count for button
+    let LogLeadclickCount = 0;
+    const handleLogLeadClick = () => {
+        LogLeadclickCount++;
+        console.log(`Log Lead Button clicked. Total clicks: ${LogLeadclickCount}`);
+    };
+    const endSession = async () => {
+        try {
+            console.log(`Ending session with ${LogLeadclickCount} clicks.`);
+            if (ldClient) {
+                ldClient.track('log-lead-clicks', { key: process.env.REACT_APP_USER_KEY }, LogLeadclickCount);
+                await ldClient.flush(); // Flush pending events
+                console.log('Events successfully flushed');
+            }
+        } catch (error) {
+            console.error('Error flushing events:', error);
+        } finally {
+            if (ldClient) ldClient.close(); // close client
+            console.log('Session ended');
+        }
+    };
+    window.addEventListener('beforeunload', endSession);
 
     return (
         <React.Fragment>
@@ -50,14 +78,18 @@ export default function UserActivities() {
                 {/* Conditionally render the first Grid item based on the feature flag */}
                 {showLogLeadButton && (
                     <Grid item xs={6}>
-                        <Button sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} variant="contained">
+                        <Button 
+                            sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} 
+                            variant="contained" 
+                            onClick={handleLogLeadClick} // Add click handler for tracking
+                        >
                             <LibraryBooksIcon />Log Lead
                         </Button>
                     </Grid>
                 )}
                 <Grid item xs={6}>
-                    <Button 
-                        sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }} 
+                    <Button
+                        sx={{ backgroundColor: "#2b6777", width: '100%', display: 'flex', flexDirection: 'column' }}
                         variant="contained"
                         onClick={handleLogCallClick} // Add click handler for tracking
                     >

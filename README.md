@@ -16,19 +16,15 @@ The project highlights how feature flagging can address common challenges by ena
 git clone https://github.com/NickelousTex/LaunchDarklyLOS.git
 ```
 
-**2. Navigate to the cloned down repository and install packages**
+**2. Navigate to the repository and setup environment variables**
 
 ```sh
 cd LaunchDarklyLOS
-npm i
 ```
-
-**3. Setup environment variables**
 
 Create an environment variable file for storing key information to edit for testing. You can edit this file later to include your SDK key and project client-side id. Note that the client-side id can only be used with flags that have Client-side ID setup.
 ```sh
 cat <<EOF > .env
-PORT=3000
 USER_KEY=test_user
 REACT_APP_USER_KEY=test_user
 USER_NAME="Jon Doe"
@@ -38,15 +34,29 @@ REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="<your-client-side-id-*******>"
 EOF
 ```
 
-**4. Compile the packages and start the server**
+**4. Startup docker contain**
 
+Using docker compose create a container to run the app in detached mode
 ```sh
-npm start
+docker compose up -d
 ```
 
 **5. Open a web browser**
 
 Access the application at http://localhost:3000 in your browser. The server port can be updated in the .env file.
+
+**6. Update environment variables**
+
+If updating environment variables in your .env file, reload those to the app
+```sh
+docker compose up -d --force-recreate	
+```
+
+**7. When finished - shutdown container**
+
+```sh
+docker compose down
+```
 
 
 -----

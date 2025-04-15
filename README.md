@@ -67,7 +67,7 @@ docker compose down
 - [server-side flag usage 1](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L13-L26) | [server-side flag usage 2](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L51-L57)
 - [client-side sdk w/streaming](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/App.js#L7-L19) *streaming is default if not set, but can be disabled
 - [client-side flag usage 1](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/Dashboard.js#L74-L79) | [client-side flag usage 2](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/Dashboard.js#L175-L182)
-- [custom metric](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L34-L44)
+- [custom metric](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L51-L72)
 
 
 ## Feature Demonstration

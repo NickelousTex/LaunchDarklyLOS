@@ -51,25 +51,29 @@ export default function UserActivities() {
             console.error('Error tracking event or flushing events:', error);
         }
     };
-
-    const handleLogLeadClick = async () => {
+    // Initialize a click counter to dynamically send total click count for button
+    let LogLeadclickCount = 0;
+    const handleLogLeadClick = () => {
+        LogLeadclickCount++;
+        console.log(`Log Lead Button clicked. Total clicks: ${LogLeadclickCount}`);
+    };
+    const endSession = async () => {
         try {
-            console.log('Log Lead button clicked by user:', process.env.REACT_APP_USER_KEY);
-
+            console.log(`Ending session with ${LogLeadclickCount} clicks.`);
             if (ldClient) {
-                // Track a custom event in LaunchDarkly
-                ldClient.track('log-lead-click', { key: process.env.REACT_APP_USER_KEY }, 1);
-
-                // Flush events to ensure they are sent to LaunchDarkly
-                await ldClient.flush();
-                console.log('Events successfully flushed to LaunchDarkly');
-            } else {
-                console.error('LaunchDarkly client is not initialized');
+                ldClient.track('log-lead-clicks', { key: process.env.REACT_APP_USER_KEY }, LogLeadclickCount);
+                await ldClient.flush(); // Flush pending events
+                console.log('Events successfully flushed');
             }
         } catch (error) {
-            console.error('Error tracking event or flushing events:', error);
+            console.error('Error flushing events:', error);
+        } finally {
+            if (ldClient) ldClient.close(); // close client
+            console.log('Session ended');
         }
     };
+    window.addEventListener('beforeunload', endSession);
+
     return (
         <React.Fragment>
             <Title>User Quick Links</Title>

@@ -25,16 +25,17 @@ npm i
 
 **3. Setup environment variables**
 
-Create an environment variable file for storing key information to edit for testing. You can edit this file later.
+Create an environment variable file for storing key information to edit for testing. You can edit this file later to include your SDK key and project client-side id. Note that the client-side id can only be used with flags that have Client-side ID setup.
 ```sh
-touch .env
-export PORT=3000
-export USER_KEY=test_user
-export REACT_APP_USER_KEY=test_user
-export USER_NAME="Jon Doe"
-export USER_EMAIL="jon.doe@gmail.com"
-export LAUNCHDARKLY_SDK_KEY="sdk-******" # your SDK key
-export REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="*******" # your project client id - note that only flags enabled to use client sdk can be used
+cat <<EOF > .env
+PORT=3000
+USER_KEY=test_user
+REACT_APP_USER_KEY=test_user
+USER_NAME="Jon Doe"
+USER_EMAIL="jon.doe@gmail.com"
+LAUNCHDARKLY_SDK_KEY="sdk-******"
+REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="*******" 
+EOF
 ```
 
 **4. Compile the packages and start the server**

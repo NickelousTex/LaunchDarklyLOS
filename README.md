@@ -139,8 +139,8 @@ context: {
 ### **Extra Credit
 **Experimentation**
 
-Track user interactions with feature flags by leveraging metrics in LaunchDarkly. For example, monitor clicks on the Log Call Button using this metric:
-[log-call-click](https://app.launchdarkly.com/projects/default/metrics/log_call_count/details?env=test&selected-env=test)
+Track user interactions with feature flags by leveraging metrics in LaunchDarkly. For example, monitor clicks on the Log Lead Button using this metric:
+[log-lead-session-clicks](https://app.launchdarkly.com/projects/default/metrics/log-lead-session-clicks/details?env=test&selected-env=test)
 
 **Integration Test**
 

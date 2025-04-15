@@ -33,25 +33,22 @@ export default function UserActivities() {
 
     const handleLogCallClick = async () => {
         try {
-            // Log the button click with user information
+            // Log call button click with user information
             console.log('Log Call button clicked by user:', process.env.REACT_APP_USER_KEY);
-
-            // Ensure the LaunchDarkly client is initialized before tracking the event
             if (ldClient) {
-                // Track a custom event in LaunchDarkly
                 ldClient.track('log-call-click', { key: process.env.REACT_APP_USER_KEY }, 1);
-
-                // Flush events to ensure they are sent to LaunchDarkly
+                // Flush events immediately
                 await ldClient.flush();
-                console.log('Events successfully flushed to LaunchDarkly');
+                console.log('Event successfully flushed to LaunchDarkly');
             } else {
+                // console logging for debugging
                 console.error('LaunchDarkly client is not initialized');
             }
         } catch (error) {
             console.error('Error tracking event or flushing events:', error);
         }
     };
-    // Initialize a click counter to dynamically send total click count for button
+    // Initialize a click counter to send total click count for button
     let LogLeadclickCount = 0;
     const handleLogLeadClick = () => {
         LogLeadclickCount++;

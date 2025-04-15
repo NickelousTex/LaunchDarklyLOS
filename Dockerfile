@@ -1,16 +1,14 @@
 FROM node:16
 
-WORKDIR .
+WORKDIR /usr/src/app
 
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm i
+RUN npm install
 
 COPY . .
 
-# Expose port 3000
 EXPOSE 3000
 
-# Start the app (replace 'app.js' with your main file if different)
 CMD ["npm", "start"]

@@ -45,7 +45,14 @@ docker compose up -d
 
 Access the application at http://localhost:3000 in your browser. The server port can be updated in the .env file.
 
-**6. When finished - shutdown container**
+**6. Update environment variables**
+
+If updating environment variables in your .env file, reload those to the app
+```sh
+docker compose up -d --force-recreate	
+```
+
+**7. When finished - shutdown container**
 
 ```sh
 docker compose down

@@ -33,8 +33,8 @@ USER_KEY=test_user
 REACT_APP_USER_KEY=test_user
 USER_NAME="Jon Doe"
 USER_EMAIL="jon.doe@gmail.com"
-LAUNCHDARKLY_SDK_KEY="sdk-******"
-REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="*******" 
+LAUNCHDARKLY_SDK_KEY="<your-sdk-key-******>"
+REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID="<your-client-side-id-*******>" 
 EOF
 ```
 

@@ -111,10 +111,6 @@ The flag's functionality is designed to be based on context of the admin 'key'
 
 Update the [context object](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/client/App.js#L10-L14) in App.js to match one of the targeted rules.
 
-After updating context, ensure your force the update to the docker container.
-```sh
-docker compose up -d --force-recreate	
-```
 
 Admin Context (Card Visable)
 ```

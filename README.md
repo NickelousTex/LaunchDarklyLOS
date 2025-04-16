@@ -9,21 +9,24 @@ The project highlights how feature flagging can address common challenges by ena
 
 ## LaunchDarkly setup
 **1. Register for account**
-[Register/log into your account](https://app.launchdarkly.com/login)
+
+- [Register/log into your account](https://app.launchdarkly.com/login)
 
 **2. Create Log Lead boolean flag**
+
 For the first feature flag we'll use a simple on/off functionality to demonstrate capabilities.
 
-Go to ['flags'](https://app.launchdarkly.com/projects/default/flags) and create your first flag (preferable for `test` env) with the key `show_log_lead_button`
+- Go to ['flags'](https://app.launchdarkly.com/projects/default/flags) and create your first flag (preferable for `test` env) with the key `show_log_lead_button`
 
-Set the 'Default rule' to serve `false`.
+- Set the 'Default rule' to serve `false`.
 
-![Log Lead setup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Setup.png "Log Lead Setup")
+- ![Log Lead setup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Setup.png "Log Lead Setup")
 
 **3. Create Application Lookup flag**
-Go to ['flags'](https://app.launchdarkly.com/projects/default/flags) and create a new flag with the key `show_application_lookup`
 
-Set the 'Default rule' to serve `false`.
+- Go to ['flags'](https://app.launchdarkly.com/projects/default/flags) and create a new flag with the key `show_application_lookup`
+
+- Set the 'Default rule' to serve `false`.
 
 Now add two targeting rule flags:
 - One using 'Target individuals' (you may pick any user, but for demo purposes we choose `Jane Doe`)
@@ -72,7 +75,7 @@ docker compose up -d
 
 **5. Open a web browser**
 
-Access the application at http://localhost:3000 in your browser.
+- Access the application at http://localhost:3000 in your browser.
 
 **6. Update environment variables**
 
@@ -102,18 +105,18 @@ docker compose down
 
 ## Feature Demonstration
 
-### Part 1
+### -- Part 1 --
 **Server-Side Listening - Log Lead Button**
 
 Log into LaunchDarkly and navigate to the Log Lead Button feature flag: https://app.launchdarkly.com/projects/default/flags/show_log_lead_button
 
-Toggle function on/off manually to validate to see the impact on the UI
+- Toggle function on/off manually to validate to see the impact on the UI
 
-When set to false:
-![Log Lead Missing img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Absent.png "Log Lead missing")
+When set to `false`:
+- ![Log Lead Missing img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Absent.png "Log Lead missing")
 
-When set to true:
-![Log  Lead Present img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Present.png "Log Lead present")
+When set to `true`:
+- ![Log  Lead Present img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Present.png "Log Lead present")
 
 **Rollback via API**
 You can turn off the feature flag programmatically using the LaunchDarkly API:
@@ -130,14 +133,14 @@ curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/show_log_lead_b
     }'
 ```
 
-### Part 2
+### -- Part 2 --
 **Client-Side Listening - Application Lookup Card**
 
 Log into LaunchDarkly and navigate to the Application Lookup Card feature flag: https://app.launchdarkly.com/projects/default/flags/show_application_lookup
 
 The flag's functionality is designed to be based on context of the admin 'key' 
 
-![Application Lookup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
+- ![Application Lookup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
 
 Update the [context object](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/client/App.js#L10-L14) in App.js to match one of the targeted rules.
 
@@ -166,18 +169,18 @@ context: {
 },
 ```
 
-### **Extra Credit
+### -- ** Extra Credit ** --
 **Experimentation**
 
 Track user interactions with feature flags by leveraging metrics in LaunchDarkly. For example, monitor clicks on the Log Lead Button using this metric:
 [log-lead-session-clicks](https://app.launchdarkly.com/projects/default/metrics/log-lead-session-clicks/details?env=test&selected-env=test)
 
-![Log Lead Session Clicks img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLeadMetric_Example.png "Log Lead Session Clicks activity")
+- ![Log Lead Session Clicks img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLeadMetric_Example.png "Log Lead Session Clicks activity")
 
 **Integration Test**
 
-Used [Zapier](https://zapier.com/editor/291968418/published) to make a trigger to draft an email every time a flag is updated
+- Used [Zapier](https://zapier.com/editor/291968418/published) to make a trigger to draft an email every time a flag is updated
 
-![Zapier Setup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/Zapier_Setup.png "Zapier Setup")
+- ![Zapier Setup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/Zapier_Setup.png "Zapier Setup")
 
-![Draft Email img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/DraftEmail_Example.png "Draft Email Example")
+- ![Draft Email img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/DraftEmail_Example.png "Draft Email Example")

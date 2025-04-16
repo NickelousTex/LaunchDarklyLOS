@@ -27,8 +27,10 @@ Set the 'Default rule' to serve `false`.
 
 Now add two targeting rule flags:
 - One using 'Target individuals' (you may pick any user, but for demo purposes we choose `Jane Doe`)
+
   ![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/TargetUser_Setup.png "Target User Setup")
-- One using `Build a custom rule'
+- One using 'Build a custom rule'
+
   ![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/AdminUser_Setup.png "Admin User Setup")
 
 Be sure to review/save all changes

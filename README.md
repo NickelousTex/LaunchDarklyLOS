@@ -5,11 +5,40 @@ This project demonstrates the integration of LaunchDarkly feature flagging withi
 
 The project highlights how feature flagging can address common challenges by enabling user/rule targeting, rollback functionality, and metric gathering. It also showcases seamless integration with third-party SDKs, such as InformedIQ, overcoming traditional friction points that slow down adoption.
 
+<br/>
 
------
+## LaunchDarkly setup
+**1. Register for account**
+[Register/log into your account](https://app.launchdarkly.com/login)
 
+**2. Create Log Lead boolean flag**
+For the first feature flag we'll use a simple on/off functionality to demonstrate capabilities.
 
-## Setup
+Go to ['flags'](https://app.launchdarkly.com/projects/default/flags) and create your first flag (preferable for `test` env) with the key `show_log_lead_button`
+
+Set the 'Default rule' to serve `false`.
+
+![Log Lead setup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Setup.png "Log Lead Setup")
+
+**3. Create Application Lookup flag**
+Go to ['flags'](https://app.launchdarkly.com/projects/default/flags) and create a new flag with the key `show_application_lookup`
+
+Set the 'Default rule' to serve `false`.
+
+Now add two targeting rule flags:
+- One using 'Target individuals' (you may pick any user, but for demo purposes we choose `Jane Doe`)
+
+  ![Target individual img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/TargetUser_Setup.png "Target User Setup")
+- One using 'Build a custom rule'
+
+  ![Admin setup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/AdminUser_Setup.png "Admin User Setup")
+
+Be sure to review/save all changes
+[Additional Documentation](https://launchdarkly.com/docs/home/)
+
+<br/>
+
+## LOS Setup
 **1. Clone down this repository**
 
 ```sh
@@ -58,8 +87,7 @@ docker compose up -d --force-recreate
 docker compose down
 ```
 
-
------
+<br/>
 
 ## Key Callouts
 - [enviornment variables](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/server/server.js#L11-L16) *must have `.env` file setup 
@@ -69,6 +97,8 @@ docker compose down
 - [client-side flag usage 1](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/Dashboard.js#L74-L79) | [client-side flag usage 2](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/Dashboard.js#L175-L182)
 - [custom metric](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/client/components/UserActivities.js#L51-L72)
 
+
+<br/>
 
 ## Feature Demonstration
 
@@ -80,10 +110,10 @@ Log into LaunchDarkly and navigate to the Log Lead Button feature flag: https://
 Toggle function on/off manually to validate to see the impact on the UI
 
 When set to false:
-![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Absent.png "Log Lead missing")
+![Log Lead Missing img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Absent.png "Log Lead missing")
 
 When set to true:
-![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Present.png "Log Lead present")
+![Log  Lead Present img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLead_Present.png "Log Lead present")
 
 **Rollback via API**
 You can turn off the feature flag programmatically using the LaunchDarkly API:
@@ -107,7 +137,7 @@ Log into LaunchDarkly and navigate to the Application Lookup Card feature flag: 
 
 The flag's functionality is designed to be based on context of the admin 'key' 
 
-![alt text](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
+![Application Lookup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/ApplicationLookup_rule.png "Application Lookup Card")
 
 Update the [context object](https://github.com/NickelousTex/LaunchDarklyLOS/blob/nt-finalize/client/App.js#L10-L14) in App.js to match one of the targeted rules.
 
@@ -142,6 +172,12 @@ context: {
 Track user interactions with feature flags by leveraging metrics in LaunchDarkly. For example, monitor clicks on the Log Lead Button using this metric:
 [log-lead-session-clicks](https://app.launchdarkly.com/projects/default/metrics/log-lead-session-clicks/details?env=test&selected-env=test)
 
+![Log Lead Session Clicks img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/LogLeadMetric_Example.png "Log Lead Session Clicks activity")
+
 **Integration Test**
 
 Used [Zapier](https://zapier.com/editor/291968418/published) to make a trigger to draft an email every time a flag is updated
+
+![Zapier Setup img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/Zapier_Setup.png "Zapier Setup")
+
+![Draft Email img](https://github.com/NickelousTex/LaunchDarklyLOS/blob/main/src/common/images/DraftEmail_Example.png "Draft Email Example")

@@ -30,7 +30,7 @@ dist/
 
 # ENV
 .env
-
+.launchdarkly/
 #bundle
 public/bundle.js
 sampleFiles/

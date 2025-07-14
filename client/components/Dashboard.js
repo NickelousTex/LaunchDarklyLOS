@@ -19,6 +19,8 @@ import Orders from './Orders';
 import ViewApplications from './ViewApplications';
 import UserActivities from './UserActivities';
 import FeaturedInfo from './FeaturedInfo/FeaturedInfo';
+import QuickLoginDialog from "./QuickLoginDialog";
+import { LoginProvider } from "./LoginContext";
 
 const drawerWidth = 240;
 
@@ -79,132 +81,127 @@ function DashboardContent() {
   };
 
   return (
-    <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <AppBar position="absolute" open={open} sx={{
-          backgroundColor: '#2b6777',
-        }}>
-          <Toolbar
-            sx={{
-              pr: '24px', // keep right padding when drawer closed
-            }}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
+    <LoginProvider>
+      <ThemeProvider theme={mdTheme}>
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <AppBar position="absolute" open={open} sx={{ backgroundColor: '#2b6777' }}>
+            <Toolbar sx={{ pr: '24px' }}>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer}
+                sx={{ marginRight: '36px', ...(open && { display: 'none' }) }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                align="center"
+                sx={{ flexGrow: 1 }}
+              >
+                Loan Origination Dashboard
+              </Typography>
+              {/* QuickLoginDialog inserted here */}
+              <QuickLoginDialog />
+              <IconButton color="inherit" >
+                <Badge badgeContent={4} color="primary" >
+                  <NotificationsIcon />
+                </Badge>
+                <Badge badgeContent={2} color="primary" sx={{ marginLeft: '15px', marginRight: '15px' }}>
+                  <CalendarTodayIcon />
+                </Badge>
+                <Badge color="primary">
+                  <LogoutIcon />
+                </Badge>
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+          <Drawer variant="permanent" open={open}>
+            <Toolbar
               sx={{
-                marginRight: '36px',
-                ...(open && { display: 'none' }),
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                px: [1],
               }}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              align="center"
-              sx={{ flexGrow: 1 }}
-            >
-              Loan Origination Dashboard
-            </Typography>
-            <IconButton color="inherit" >
-              <Badge badgeContent={4} color="primary" >
-                <NotificationsIcon />
-              </Badge>
-              <Badge badgeContent={2} color="primary" sx={{ marginLeft: '15px', marginRight: '15px' }}>
-                <CalendarTodayIcon />
-              </Badge>
-              <Badge color="primary">
-                <LogoutIcon />
-              </Badge>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer variant="permanent" open={open}>
-          <Toolbar
+              <IconButton onClick={toggleDrawer}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </Toolbar>
+            <Divider />
+            <List>{mainListItems}</List>
+            <Divider />
+            <List>{secondaryListItems}</List>
+          </Drawer>
+          <Box
+            component="main"
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              px: [1],
+              backgroundColor: '#c8d8e4',
+              flexGrow: 1,
+              height: '100vh',
+              overflow: 'auto',
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          <List>{mainListItems}</List>
-          <Divider />
-          <List>{secondaryListItems}</List>
-        </Drawer>
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: '#c8d8e4',
-            flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
-          }}
-        >
-          <Toolbar />
-          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={12} lg={12}>
-                <FeaturedInfo />
-              </Grid>
-              {/* Total Loans */}
-              <Grid item xs={12} md={6} lg={4}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <TotalLoans />
-                </Paper>
-              </Grid>
-
-              {/* Conditionally Render View Applications */}
-              {showApplicationLookup && (
+            <Toolbar />
+            <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={12} lg={12}>
+                  <FeaturedInfo />
+                </Grid>
+                {/* Total Loans */}
                 <Grid item xs={12} md={6} lg={4}>
-                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}>
-                    <ViewApplications />
+                  <Paper
+                    sx={{
+                      p: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: 240,
+                    }}
+                  >
+                    <TotalLoans />
                   </Paper>
                 </Grid>
-              )}
 
-              {/* User Activities */}
-              <Grid item xs={12} md={6} lg={4}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <UserActivities />
-                </Paper>
+                {/* Conditionally Render View Applications */}
+                {showApplicationLookup && (
+                  <Grid item xs={12} md={6} lg={4}>
+                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}>
+                      <ViewApplications />
+                    </Paper>
+                  </Grid>
+                )}
+
+                {/* User Activities */}
+                <Grid item xs={12} md={6} lg={4}>
+                  <Paper
+                    sx={{
+                      p: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: 240,
+                    }}
+                  >
+                    <UserActivities />
+                  </Paper>
+                </Grid>
+                {/* Recent Orders */}
+                <Grid item xs={12}>
+                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                    <Orders />
+                  </Paper>
+                </Grid>
               </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </Paper>
-              </Grid>
-            </Grid>
-          </Container>
+            </Container>
+          </Box>
         </Box>
-      </Box>
-    </ThemeProvider>
+      </ThemeProvider>
+    </LoginProvider>
   );
 }
 

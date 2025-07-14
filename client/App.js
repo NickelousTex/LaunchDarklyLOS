@@ -4,14 +4,15 @@ import { asyncWithLDProvider } from 'launchdarkly-react-client-sdk';
 
 // COMPONENTS //
 import Dashboard from './components/Dashboard';
+console.log('LD ClientSideID:', process.env.REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID);
 const init = async () => {
   const LDProvider = await asyncWithLDProvider({
     clientSideID: process.env.REACT_APP_LAUNCHDARKLY_CLIENT_SIDE_ID,
     context: {
-        kind: 'admin',
-        key: 'test_user',
-        name: 'Jon Doe',
-        email: 'JonDoe@gmail.com',
+      kind: 'admin',
+      key: 'test_user',
+      name: 'Jon Doe',
+      email: 'JonDoe@gmail.com',
     },
     options: {
       streaming: true,
